@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438709115859",
+    "project_id": "pcc-mobile-7a1fc",
+    "storage_bucket": "pcc-mobile-7a1fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438709115859:android:d4902b7819b2df1a982d26",
+        "android_client_info": {
+          "package_name": "com.example.local_notification_app_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438709115859-dbor36rcb9e0h0c4eoms6kbv4srqqebe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSM8UjrqrGoH4rbfJ2FpMfZ1RW_H47Bns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438709115859-dbor36rcb9e0h0c4eoms6kbv4srqqebe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
