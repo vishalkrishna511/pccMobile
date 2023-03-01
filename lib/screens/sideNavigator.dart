@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mobile_pcc/screens/graphs.dart';
 import 'package:mobile_pcc/screens/login.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -18,6 +19,14 @@ class NavigationDrawerWidget extends StatelessWidget {
           buildMenuItem(
             text: 'Home',
             icon: Icons.home,
+            ctx: context,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          buildMenuItem(
+            text: 'Live',
+            icon: Icons.auto_graph_sharp,
             ctx: context,
           ),
           const SizedBox(
@@ -67,10 +76,16 @@ class NavigationDrawerWidget extends StatelessWidget {
       onTap: () async {
         if (text == 'Logout') {
           await FirebaseAuth.instance.signOut();
+
           Navigator.push(
               ctx,
               MaterialPageRoute(
-                  builder: (context) => LoginPage(title: 'Welcome Back')));
+                  builder: (context) =>
+                      const LoginPage(title: 'Welcome Back')));
+        }
+        if (text == 'Live') {
+          Navigator.push(
+              ctx, MaterialPageRoute(builder: (context) => const Graphs()));
         }
       },
     );

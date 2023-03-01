@@ -1,125 +1,95 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:marquee/marquee.dart';
+// import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_pcc/Services/notifi_service.dart';
+import 'package:mobile_pcc/screens/customAppBar.dart';
 
-class MainHome extends StatefulWidget {
-  const MainHome({Key? key}) : super(key: key);
+import 'package:mobile_pcc/screens/sideNavigator.dart';
+
+class DashboardSS extends StatefulWidget {
+  const DashboardSS({super.key});
+
+  // final String title;
 
   @override
-  State<MainHome> createState() => _MainHomeState();
+  State<DashboardSS> createState() => _DashboardSSState();
 }
 
-class _MainHomeState extends State<MainHome> {
-  /// List of Tab Bar Item
+class _DashboardSSState extends State<DashboardSS> {
+  late final bool custom = false;
   List<String> items = [
     "Wires",
     "ACH OnUs",
     "ACH InTl",
   ];
 
-  /// List of body icon
-  List<IconData> icons = [
-    Icons.notification_important_sharp,
-    Icons.notifications_active_rounded,
-    Icons.notifications_sharp,
+  List<List<String>> texts = [
+    ['Internal Wire Transfer', 'FedWire in', 'CHIPS In'],
+    ['ACH OnUS Trans', 'ACH Fed In', 'ACH Transaction In'],
+    ['ACH Intl In', 'ACH Value OutBound', 'Intl In']
   ];
+
+  List<List<String>> alertsNum = [
+    ['WIR-00007-20230216', 'WIR-00002-20230216', 'WIR-00004-20230216'],
+    ['ACH-00001-20230216', 'ACH-00012-20230216', 'ACH-00009-20230216'],
+    ['INT-00004-20230216', 'INT-00014-20230216', 'INT-00016-20230216']
+  ];
+  List<List<String>> notifications = [
+    ['Opening Payment Wire!!', 'Alert to Payment', 'Wire Payment on Hold'],
+    ['Opening Payment via ACH', 'ACH Fed In', 'ACH Transaction on Hold'],
+    [
+      'ACH Intl Payment initiated',
+      'ACH Value OutBound Alert',
+      'ACH Intl limit Exceeded'
+    ]
+  ];
+  int current2 = 0;
   int current = 0;
+  int current1 = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 246, 236, 216),
+      // backgroundColor: Colors.transparent,
+
+      drawer: const NavigationDrawerWidget(),
+      // appBar: AppBar(),
+      appBar: customAppBar(5),
       body: Container(
-        color: Colors.yellow,
-        width: 400,
-        height: 320,
-        margin: const EdgeInsets.all(5),
-        child: Column(
-          children: [
-            /// CUSTOM TABBAR
-            SizedBox(
-              width: 400,
-              height: 60,
-              child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: items.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (ctx, index) {
-                    return Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              current = index;
-                            });
-                          },
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            margin: const EdgeInsets.all(5),
-                            width: 80,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              color: current == index
-                                  ? Colors.white70
-                                  : Colors.white54,
-                              borderRadius: current == index
-                                  ? BorderRadius.circular(15)
-                                  : BorderRadius.circular(10),
-                              border: current == index
-                                  ? Border.all(
-                                      color: Colors.deepPurpleAccent, width: 2)
-                                  : null,
-                            ),
-                            child: Center(
-                              child: Text(
-                                items[index],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: current == index
-                                        ? Colors.black
-                                        : Colors.grey),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Visibility(
-                          visible: current == index,
-                          child: Container(
-                            width: 5,
-                            height: 5,
-                            decoration: const BoxDecoration(
-                                color: Colors.deepPurpleAccent,
-                                shape: BoxShape.circle),
-                          ),
-                        )
-                      ],
-                    );
-                  }),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 5),
-              width: 200,
-              height: 250,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    icons[current],
-                    size: 200,
-                    color: Colors.deepPurple,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    items[current],
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 30,
-                        color: Colors.deepPurple),
-                  ),
-                ],
-              ),
-            ),
-          ],
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.2), BlendMode.dstATop),
+                image: const AssetImage('assets/bg.webp'),
+                fit: BoxFit.cover)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(children: <Widget>[
+            ...[_buildMarquee()].map(_wrapWithStuff).toList(),
+            const Text('ijinhunuhu')
+          ]),
         ),
       ),
+    );
+  }
+
+  Widget _buildMarquee() {
+    return Marquee(
+      text: 'GeeksforGeeks.org was created'
+          ' with a goal in mind to provide well written,'
+          ' well thought and well explained solutions for'
+          ' selected questions. The core team of five super geeks constituting'
+          ' of technology lovers and computer science enthusiasts'
+          ' have been constantly working in this direction ',
+    );
+  }
+
+  Widget _wrapWithStuff(Widget child) {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Container(height: 50.0, color: Colors.white, child: child),
     );
   }
 }

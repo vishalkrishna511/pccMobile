@@ -1,14 +1,12 @@
-import 'package:analog_clock/analog_clock.dart';
-import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_pcc/Services/notifi_service.dart';
-import 'package:mobile_pcc/screens/clock.dart';
+
 import 'package:mobile_pcc/screens/sideNavigator.dart';
 
 class DashboardMain extends StatefulWidget {
-  const DashboardMain();
+  const DashboardMain({super.key});
 
   // final String title;
 
@@ -53,7 +51,7 @@ class _DashboardMainState extends State<DashboardMain> {
       elevation: 0,
       backgroundColor: Color(0xFFb40404),
       centerTitle: true,
-      title: Text(
+      title: const Text(
         'WELLS FARGO',
         style: TextStyle(
           fontSize: 30,
@@ -62,26 +60,26 @@ class _DashboardMainState extends State<DashboardMain> {
         ),
       ),
       actions: <Widget>[
-        new Stack(
+        Stack(
           children: <Widget>[
-            new IconButton(
-              icon: Icon(Icons.notifications),
+            IconButton(
+              icon: const Icon(Icons.notifications),
               onPressed: () {},
             ),
-            new Positioned(
+            Positioned(
               right: 11,
               top: 11,
-              child: new Container(
+              child: Container(
                 padding: EdgeInsets.all(2),
-                decoration: new BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(6),
                 ),
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   minWidth: 14,
                   minHeight: 14,
                 ),
-                child: Text(
+                child: const Text(
                   '9',
                   style: TextStyle(
                     color: Colors.white,
@@ -99,33 +97,39 @@ class _DashboardMainState extends State<DashboardMain> {
       drawer: const NavigationDrawerWidget(),
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(40.0), // here the desired height
+          preferredSize: const Size.fromHeight(40.0), // here the desired height
           child: appBar),
       body: Container(
         height:
             MediaQuery.of(context).size.height - appBar.preferredSize.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
               Color(0xFFf0ebe5),
-              Color.fromARGB(255, 245, 215, 132),
+              Color.fromARGB(255, 253, 234, 184),
               Color(0xFFf0ebe5)
             ])),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xFFb40404),
                   border: Border(
-                      bottom: BorderSide(color: Color(0xFFfdc312), width: 5)),
-                  // borderRadius: BorderRadius.circular(8)
+                    bottom: BorderSide(
+                      color: Color(0xFFfdc312),
+                      width: 5,
+                    ),
+                  ),
+                  // borderRadius: BorderRadius.only(
+                  //     bottomLeft: Radius.circular(20),
+                  //     bottomRight: Radius.circular(20))
+
                   // borderRadius: BorderRadius.vertical(
                   //   bottom: Radius.elliptical(
-                  //     MediaQuery.of(context).size.width,
-                  //     50,
+                  //     MediaQuery.of(context).size.width,50,
                   //   ),
                   // ),
                 ),
@@ -142,7 +146,7 @@ class _DashboardMainState extends State<DashboardMain> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             Text(
                               'EST',
                               style: TextStyle(
@@ -166,7 +170,7 @@ class _DashboardMainState extends State<DashboardMain> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             Text(
                               'PST',
                               style: TextStyle(
@@ -190,7 +194,7 @@ class _DashboardMainState extends State<DashboardMain> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             Text(
                               'MST',
                               style: TextStyle(
@@ -214,7 +218,7 @@ class _DashboardMainState extends State<DashboardMain> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             Text(
                               'CST',
                               style: TextStyle(
@@ -232,7 +236,7 @@ class _DashboardMainState extends State<DashboardMain> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
@@ -242,7 +246,7 @@ class _DashboardMainState extends State<DashboardMain> {
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.black)),
                   child: Column(
-                    children: <Widget>[
+                    children: const <Widget>[
                       Padding(
                         padding: EdgeInsets.all(5),
                         child: ListTile(
@@ -318,7 +322,7 @@ class _DashboardMainState extends State<DashboardMain> {
                 ),
               ),
               ExpansionTile(
-                title: Text('Alerts'),
+                title: const Text('Alerts'),
                 children: <Widget>[
                   Container(
                     color: Colors.transparent,
@@ -416,7 +420,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                   SizedBox(
                                     width: 380,
                                     child: ListTile(
-                                      leading: Icon(
+                                      leading: const Icon(
                                           Icons.notifications_active_rounded),
                                       title: Text(texts[current][1]),
                                       subtitle: Text(alertsNum[current][1]),
@@ -427,7 +431,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                   SizedBox(
                                     width: 380,
                                     child: ListTile(
-                                      leading: Icon(
+                                      leading: const Icon(
                                           Icons.notifications_active_rounded),
                                       title: Text(texts[current][2]),
                                       subtitle: Text(alertsNum[current][2]),
@@ -456,7 +460,7 @@ class _DashboardMainState extends State<DashboardMain> {
                 ],
               ),
               ExpansionTile(
-                title: Text('Notifications'),
+                title: const Text('Notifications'),
                 children: <Widget>[
                   Container(
                     color: Colors.transparent,
@@ -545,23 +549,25 @@ class _DashboardMainState extends State<DashboardMain> {
                                       selectedTileColor: Colors.black,
                                       leading: Icon(Icons.notifications_sharp),
                                       title: Text(notifications[current1][0]),
-                                      subtitle: Text('Payment'),
+                                      subtitle: const Text('Payment'),
                                     ),
                                   ),
                                   SizedBox(
                                     width: 380,
                                     child: ListTile(
-                                      leading: Icon(Icons.notifications_sharp),
+                                      leading:
+                                          const Icon(Icons.notifications_sharp),
                                       title: Text(notifications[current1][1]),
-                                      subtitle: Text('ACH'),
+                                      subtitle: const Text('ACH'),
                                     ),
                                   ),
                                   SizedBox(
                                     width: 380,
                                     child: ListTile(
-                                      leading: Icon(Icons.notifications_sharp),
+                                      leading:
+                                          const Icon(Icons.notifications_sharp),
                                       title: Text(notifications[current1][2]),
-                                      subtitle: Text('Card'),
+                                      subtitle: const Text('Card'),
                                     ),
                                   ),
                                 ],
@@ -572,7 +578,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                   autoPlayCurve: Curves.fastOutSlowIn,
                                   enableInfiniteScroll: true,
                                   autoPlayAnimationDuration:
-                                      Duration(milliseconds: 1000),
+                                      const Duration(milliseconds: 1000),
                                   viewportFraction: 1.0,
                                 ),
                               )
@@ -585,7 +591,7 @@ class _DashboardMainState extends State<DashboardMain> {
                 ],
               ),
               ExpansionTile(
-                title: Text('Post Outages'),
+                title: const Text('Post Outages'),
                 children: <Widget>[
                   Container(
                     color: Colors.transparent,
@@ -672,7 +678,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                     height: 50,
                                     child: ListTile(
                                       selectedTileColor: Colors.black,
-                                      leading: Icon(
+                                      leading: const Icon(
                                           Icons.notifications_active_rounded),
                                       title: Text(texts[current2][0]),
                                       subtitle: Text(alertsNum[current2][0]),
@@ -683,7 +689,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                   SizedBox(
                                     width: 380,
                                     child: ListTile(
-                                      leading: Icon(
+                                      leading: const Icon(
                                           Icons.notifications_active_rounded),
                                       title: Text(texts[current2][1]),
                                       subtitle: Text(alertsNum[current2][1]),
@@ -694,7 +700,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                   SizedBox(
                                     width: 380,
                                     child: ListTile(
-                                      leading: Icon(
+                                      leading: const Icon(
                                           Icons.notifications_active_rounded),
                                       title: Text(texts[current2][2]),
                                       subtitle: Text(alertsNum[current2][2]),
@@ -727,7 +733,7 @@ class _DashboardMainState extends State<DashboardMain> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFFb40404),
+        backgroundColor: const Color(0xFFb40404),
         onPressed: () {
           NotificationService().showNotification(
               title: 'ALERT!!!!', body: 'Required Action immediately!!!');

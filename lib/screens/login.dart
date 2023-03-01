@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_pcc/screens/dashboard.dart';
 
 import 'package:mobile_pcc/screens/dashboardMain.dart';
 
@@ -102,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        print("CLICKED!");
                         FirebaseAuth.instance
                             .signInWithEmailAndPassword(
                                 email: emailIdController.text,
@@ -111,8 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              DashboardMain()))
-                                });
+                                              const Dashboard()))
+                                })
+                            .catchError((onError) => {print(onError)});
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
