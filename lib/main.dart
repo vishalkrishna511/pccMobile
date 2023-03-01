@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           textTheme:
               GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme)),
       debugShowCheckedModeBanner: false,
-      home: const Dashboard(),
+      home: const SplashPage(),
     );
   }
 }
