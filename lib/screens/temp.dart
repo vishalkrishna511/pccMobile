@@ -56,7 +56,7 @@ class _DashboardSSState extends State<DashboardSS> {
 
       drawer: const NavigationDrawerWidget(),
       // appBar: AppBar(),
-      appBar: customAppBar(5),
+      appBar: customAppBar(5, context),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(

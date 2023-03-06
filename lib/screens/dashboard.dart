@@ -9,8 +9,11 @@ import 'package:mobile_pcc/screens/customAppBar.dart';
 import 'package:mobile_pcc/screens/graphs.dart';
 import 'package:mobile_pcc/screens/login.dart';
 import 'package:mobile_pcc/screens/paymentBroker.dart';
+import 'package:mobile_pcc/screens/profile.dart';
 
 import 'package:mobile_pcc/screens/sideNavigator.dart';
+
+var badgeNotification = 10;
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -53,7 +56,7 @@ class _DashboardState extends State<Dashboard> {
   int current = 0;
   int current1 = 0;
   var currentIndex = 0;
-  var badgeNotification = 0;
+
   List<Color> listColors = [
     const Color.fromARGB(120, 76, 175, 79),
     const Color.fromARGB(139, 255, 193, 7),
@@ -70,14 +73,15 @@ class _DashboardState extends State<Dashboard> {
 
       drawer: const NavigationDrawerWidget(),
       // appBar: AppBar(),
-      appBar: customAppBar(badgeNotification),
+      appBar: customAppBar(badgeNotification, context),
       body: Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.2), BlendMode.dstATop),
-                image: const AssetImage('assets/bg.webp'),
-                fit: BoxFit.cover)),
+          image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.2), BlendMode.dstATop),
+              image: const AssetImage('assets/bg.webp'),
+              fit: BoxFit.cover),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(
@@ -102,10 +106,12 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ),
                         child: GridView.count(
+                          primary: false,
                           crossAxisCount: 2,
                           crossAxisSpacing: 10.0,
                           mainAxisSpacing: 10.0,
                           shrinkWrap: true,
+                          // scrollDirection: ,
                           children: List.generate(
                             2,
                             (index) {
@@ -221,6 +227,7 @@ class _DashboardState extends State<Dashboard> {
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: GridView.count(
+                        primary: false,
                         crossAxisCount: 2,
                         crossAxisSpacing: 10.0,
                         mainAxisSpacing: 10.0,
@@ -282,6 +289,8 @@ class _DashboardState extends State<Dashboard> {
                 child: Container(
                   color: const Color.fromARGB(232, 249, 241, 226),
                   child: ExpansionTile(
+                    leading: const Icon(Icons.arrow_drop_down),
+                    trailing: const Icon(Icons.warning_amber_rounded),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
@@ -299,6 +308,7 @@ class _DashboardState extends State<Dashboard> {
                         height: 150,
                         margin: const EdgeInsets.all(5),
                         child: ListView(
+                          physics: const NeverScrollableScrollPhysics(),
                           children: [
                             /// CUSTOM TABBAR
                             SizedBox(
@@ -434,6 +444,8 @@ class _DashboardState extends State<Dashboard> {
                 child: Container(
                   color: const Color.fromARGB(232, 249, 241, 226),
                   child: ExpansionTile(
+                    leading: const Icon(Icons.arrow_drop_down),
+                    trailing: const Icon(Icons.notification_important_rounded),
                     title: Text(
                       'Notifications',
                       style: GoogleFonts.albertSans(
@@ -448,6 +460,7 @@ class _DashboardState extends State<Dashboard> {
                         height: 150,
                         margin: const EdgeInsets.all(5),
                         child: ListView(
+                          physics: const NeverScrollableScrollPhysics(),
                           children: [
                             /// CUSTOM TABBAR
                             SizedBox(
@@ -580,6 +593,8 @@ class _DashboardState extends State<Dashboard> {
                 child: Container(
                   color: const Color.fromARGB(232, 249, 241, 226),
                   child: ExpansionTile(
+                    leading: const Icon(Icons.arrow_drop_down),
+                    trailing: const Icon(Icons.currency_exchange_rounded),
                     title: Text(
                       'Post Outages',
                       style: GoogleFonts.albertSans(
@@ -594,6 +609,7 @@ class _DashboardState extends State<Dashboard> {
                         height: 150,
                         margin: const EdgeInsets.all(5),
                         child: ListView(
+                          physics: const NeverScrollableScrollPhysics(),
                           children: [
                             /// CUSTOM TABBAR
 
@@ -735,7 +751,7 @@ class _DashboardState extends State<Dashboard> {
                                       enableInfiniteScroll: true,
 
                                       autoPlayAnimationDuration:
-                                          Duration(milliseconds: 3200),
+                                          const Duration(milliseconds: 3200),
 
                                       viewportFraction: 1.0,
                                     ),
@@ -779,14 +795,6 @@ class _DashboardState extends State<Dashboard> {
             backgroundColor: Color.fromRGBO(205, 19, 0, 1),
           ),
           BottomNavigationBarItem(
-            label: 'Profile',
-            icon: Icon(
-              Icons.account_circle_outlined,
-              color: Colors.black,
-            ),
-            backgroundColor: Color.fromRGBO(205, 19, 0, 1),
-          ),
-          BottomNavigationBarItem(
             label: 'Console',
             icon: Icon(
               Icons.all_inbox,
@@ -795,9 +803,9 @@ class _DashboardState extends State<Dashboard> {
             backgroundColor: Color.fromRGBO(205, 19, 0, 1),
           ),
           BottomNavigationBarItem(
-            label: 'Logout',
+            label: 'Profile',
             icon: Icon(
-              Icons.logout_rounded,
+              Icons.account_circle_sharp,
               color: Color.fromARGB(255, 0, 0, 0),
             ),
             backgroundColor: Color.fromRGBO(205, 19, 0, 1),
@@ -813,14 +821,15 @@ class _DashboardState extends State<Dashboard> {
                 ),
               );
               break;
-            // case 2:
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (BuildContext context) => ,
-            //   ),
-            // );
-            // break;
+            case 3:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const Profile(),
+                ),
+              );
+              break;
+            //   break;
             // case 3:
             // Navigator.pushReplacement(
             //   context,
@@ -845,7 +854,7 @@ class _DashboardState extends State<Dashboard> {
         backgroundColor: const Color(0xFFb40404),
         onPressed: () async {
           badgeNotification += 1;
-          await customAppBar(badgeNotification);
+          await customAppBar(badgeNotification, context);
           NotificationService().showNotification(
               title: 'ALERT!!!!', body: 'Required Action immediately!!!');
         },

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_pcc/screens/profile.dart';
 import 'package:mobile_pcc/screens/sideNavigator.dart';
 
-AppBar customAppBar(num badgeNotification) {
+AppBar customAppBar(num badgeNotification, BuildContext context) {
   return AppBar(
     backgroundColor: const Color(0xFFd81e29),
     // elevation: 10,
@@ -18,55 +19,65 @@ AppBar customAppBar(num badgeNotification) {
     //   ),
     // ),
     actions: [
-      Row(
-        children: [
-          Container(
-            width: 55,
-            height: 18,
-            color: Colors.white,
-            child: Text(
-              textAlign: TextAlign.center,
-              '7:32 EST',
-              style: GoogleFonts.dmSerifDisplay(
-                  color: Colors.black,
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold),
+      GestureDetector(
+        onTap: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const Profile(),
             ),
-          ),
-          Stack(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  radius: 22,
-                  backgroundColor: Color(0xffffd140),
-                  // child: Icon(Icons.notification_important_outlined),
-                  backgroundImage: AssetImage('assets/vk.jpg'),
-                ),
+          );
+        },
+        child: Row(
+          children: [
+            Container(
+              width: 55,
+              height: 18,
+              color: Colors.white,
+              child: Text(
+                textAlign: TextAlign.center,
+                '7:32 EST',
+                style: GoogleFonts.dmSerifDisplay(
+                    color: Colors.black,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold),
               ),
-              Positioned(
-                right: 10,
-                top: 2,
-                // left: 30,
-                child: Container(
-                  height: 20,
-                  width: 15,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.all(Radius.circular(50))),
-                  child: Text(
-                    '$badgeNotification',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.dmSerifDisplay(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
+            ),
+            Stack(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Color(0xffffd140),
+                    // child: Icon(Icons.notification_important_outlined),
+                    backgroundImage: AssetImage('assets/vk.jpg'),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+                Positioned(
+                  right: 10,
+                  top: 2,
+                  // left: 30,
+                  child: Container(
+                    height: 20,
+                    width: 15,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Text(
+                      '$badgeNotification',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.dmSerifDisplay(
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     ],
     bottom: PreferredSize(
